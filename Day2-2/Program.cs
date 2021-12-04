@@ -13,7 +13,7 @@
             // Read the file and display it line by line.  
             foreach (string line in System.IO.File.ReadLines(@".\input.txt"))
             {  
-                var direction = line.Split()[0];
+                var direction = line.Split()[0];// Read text file into string record
                 var thisValue = int.Parse(line.Split()[1]);
                 values.Add(new Step{Direction = direction, Delta = thisValue});
             }
