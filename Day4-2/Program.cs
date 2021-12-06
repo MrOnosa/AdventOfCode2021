@@ -72,13 +72,13 @@
             {
                 round++;
                 Console.WriteLine($"ROUND {round} - Drew {drawn}");
-                foreach (var card in cards)
+                Parallel.ForEach(cards, card =>
                 {
                     if (card.FinalScore == 0)
                     {
                         card.MarkNumber(drawn);
                     }
-                }
+                });
                 Console.WriteLine($"Cards:");
                 foreach (var card in cards)
                 {
