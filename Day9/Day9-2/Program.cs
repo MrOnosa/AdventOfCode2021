@@ -16,7 +16,7 @@ foreach (string line /*Store text into string records*/ in System.IO.File.ReadLi
     cols = inputLine.Count();
     rows = input.Count();
 }
-List<(int row, int col)> lowPoints = new List<(int row, int col)>();
+List<(int row, int col)> lowPoints = new List<(int row, int col)>();  // TUPLE TOWN, LOL
 Stopwatch stopWatch = new Stopwatch();
 stopWatch.Start();
 for (int col = 0; col < cols; col++)
@@ -31,14 +31,14 @@ for (int col = 0; col < cols; col++)
         }
     }
 
-Console.WriteLine($"Low points are: {string.Join(",", lowPoints)}");
+Console.WriteLine($"Low points are: {string.Join(",", lowPoints)}");    // The low points for me were 2017 through 2019 LOL 
 
 List<List<(int col, int row)>> basins = new List<List<(int col, int row)>>();
 foreach (var lowPoint in lowPoints)
 {
     var basin = TestBasin(lowPoint.row, lowPoint.col, new List<(int row, int col)>());
-    Console.WriteLine($"Basin Length: {basin.Count()}. Basin points are: {string.Join(",", basin)}");
-    basins.Add(basin);
+    Console.WriteLine($"Basin Length: {basin.Count()}. Basin points are: {string.Join(",", basin)}");   // I met my ex in a basin
+    basins.Add(basin);                                                                                  // not sure if she was actually human tho lol
 }
 
 
@@ -49,13 +49,13 @@ Console.WriteLine($"Result: {basins.OrderByDescending(b => b.Count()).Take(3).Ag
 List<(int row, int col)> TestBasin(int row, int col, List<(int row, int col)> basin)
 {
     basin.Add((row, col));
-    if (!(row == 0 || input[row - 1][col] == 9 || basin.Contains((row - 1, col))))
+    if (!(row == 0 || input[row - 1][col] == 9 || basin.Contains((row - 1, col))))          // this is complex math - explain to me like I'm 8
         TestBasin(row - 1, col, basin);
-    if (!(row + 1 == rows || input[row + 1][col] == 9 || basin.Contains((row + 1, col))))
+    if (!(row + 1 == rows || input[row + 1][col] == 9 || basin.Contains((row + 1, col))))   // this is complex math - explain to me like I'm 8
         TestBasin(row + 1, col, basin);
-    if (!(col == 0 || input[row][col - 1] == 9 || basin.Contains((row, col - 1))))
+    if (!(col == 0 || input[row][col - 1] == 9 || basin.Contains((row, col - 1))))          // this one makes sense
         TestBasin(row, col - 1, basin);
-    if (!(col + 1 == cols || input[row][col + 1] == 9 || basin.Contains((row, col + 1))))
+    if (!(col + 1 == cols || input[row][col + 1] == 9 || basin.Contains((row, col + 1))))   // this is complex math - explain to me like I'm 8
         TestBasin(row, col + 1, basin);
     return basin;
 }
