@@ -29,8 +29,6 @@
             
             System.Console.WriteLine("There were {0} lines.", counter);  
             System.Console.WriteLine("There were {0} increases.", increase); 
-            // Suspend the screen.  
-            System.Console.ReadLine();
         }
     }
 }
