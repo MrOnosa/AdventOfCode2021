@@ -1,0 +1,31 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Dumbo Octopus</title>
+    <style>
+        #loading {
+            position: absolute;
+            height: 10%;
+            width: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        Diving down to the Dumbo Octopus...<br/>
+        <progress id="loadingstatus" value="0" max="100"> 32% </progress>
+    </div>
+    <script src="js/pixi.min.js"></script>
+    <script src="js/main.js"></script>
+</body>

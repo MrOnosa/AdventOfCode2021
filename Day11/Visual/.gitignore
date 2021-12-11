@@ -1,0 +1,8 @@
+.sign/
+.settings/
+.project
+*.info
+config.xml
+*.tproject
+*.wgt
+.rds_delta
