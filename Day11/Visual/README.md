@@ -2,7 +2,7 @@
 
 [Puzzle](https://adventofcode.com/2021/day/11)
 
-[Check it out](https://mronosa.github.io/AdventOfCode2021/tree/main/Day11/Visual/index.html)  
+[Check it out](https://mronosa.github.io/AdventOfCode2021/Day11/Visual/index.html)  
 
 [](/fritballoon)
 
