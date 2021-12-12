@@ -14,7 +14,11 @@ let dumbosImages = [                //   (                /o
   "./images/Octopuses/frame_05.png",//  | o o'-..____,,-o'o o_o-'
   "./images/Octopuses/frame_06.png" //     'o.o_o_o_o,o--''
 ];
-let scoreboard;
+let icons = [
+  //Github Logo - https://github.com/logos
+  "./images/icons/GitHub-Mark.png"
+]
+let scoreboard, sourcecode;
 let dumbosTextureArray = [];
 let dumbos = [[]];
 
@@ -37,7 +41,8 @@ document.body.appendChild(app.view);
 /* Loading screen */
 let load_progress = 0;
 let total_files = [
-  dumbosImages
+  dumbosImages,
+  icons
 ].map((i) => i.length).reduce((a, b) => a + b, 0);
 PIXI.Loader.shared.onProgress.add(() => {
   load_progress += 1;
@@ -51,6 +56,7 @@ PIXI.Loader.shared.onComplete.add(() => {
 /* Load files */
 PIXI.Loader.shared
   .add(dumbosImages)
+  .add(icons)
   .load(setup);
 
 function octopus(potentialEnergy) {
@@ -103,6 +109,7 @@ function resizeElements() {
     r = playableWidth / 10;
     paddingY = (playableHeight - r * 10) / 2
   }
+  sourcecode.position.set(playableWidth, r / 2 + 10);
   for (let row = 0; row < 10; row++) {
     for (let col = 0; col < 10; col++) {
       dumbos[row][col].sprite.width = r;
@@ -117,24 +124,29 @@ function setup() {
   let init = "5483143223274585471152645561736141336146635738547841675246452176841721688288113448468485545283751526";
   //init = "8624818384372547334366183418274573826616835732214268463583177286886112813868511761611242673848415383"; //MrOnosa's Puzzle Input
   let style = new PIXI.TextStyle({
-    fontFamily: "Arial",                     //                        ___                                                                                                                                          
-    fontSize: 36,                            //                     .-'   `'.                                                                                                                                
-    fill: "white",                           //                    /         \                                                                                                                                 
-    dropShadow: true,                        //                    |         ;                                                                                                                                    
-    dropShadowColor: "#000000",              //               Sup  |         |           ___.--,                                                                                                                                         
-    dropShadowBlur: 2,                       //           _.._     |0) ~ (0) |    _.---'`__.-( (_.                                                                                                                                   
-    dropShadowAngle: Math.PI / 6,            //    __.--'`_.. '.__.\    '--. \_.-' ,.--'`     `""`                                                                                                                                                
-    dropShadowDistance: 3,                   //   ( ,.--'`   ',__ /./;   ;, '.__.'`    __                                                                                                                                         
-  });                                        //   _`) )  .---.__.' / |   |\   \__..--""  """--.,_                                                                                                                                                                                                  
-  scoreboard = new PIXI.Text("", style);     //  `---' .'.''-._.-'`_./  /\ '.  \ _.-~~~````~~~-._`-.__.'                                                                                                                                                       
-  scoreboard.zIndex = 2;                     //        | |  .' _.-' |  |  \  \  '.               `~---`                                                                                                                                       
-  scoreboard.anchor.x = 1;                   //         \ \/ .'     \  \   '. '-._)                                                                                                                                         
-  scoreboard.anchor.y = 1;                   //          \/ /        \  \    `=.__`~-.                                                                                                                                         
-  setScore();                                //          / /\         `) )    / / `"".`\                                                                                                                            
-  app.stage.addChild(scoreboard);            //    , _.-'.'\ \        / /    ( (     / /                                                                                                                                                
-  //                                               `--~`   ) )    .-'.'      '.'.  | (
-  //                                                      (/`    ( (`          ) )  '-;    
-  //                                                       `      '-;         (-'                                                                                                                                                                                          
+    fontFamily: "Arial",                     //                             ___                                                                                                                                          
+    fontSize: 36,                            //                          .-'   `'.                                                                                                                                
+    fill: "white",                           //                         /         \                                                                                                                                 
+    dropShadow: true,                        //                         |         ;                                                                                                                                    
+    dropShadowColor: "#000000",              //                    Sup  |         |           ___.--,                                                                                                                                         
+    dropShadowBlur: 2,                       //                _.._     |0) ~ (0) |    _.---'`__.-( (_.                                                                                                                                   
+    dropShadowAngle: Math.PI / 6,            //         __.--'`_.. '.__.\    '--. \_.-' ,.--'`     `""`                                                                                                                                                
+    dropShadowDistance: 3,                   //        ( ,.--'`   ',__ /./;   ;, '.__.'`    __                                                                                                                                         
+  });                                        //        _`) )  .---.__.' / |   |\   \__..--""  """--.,_                                                                                                                                                                                                  
+  scoreboard = new PIXI.Text("", style);     //       `---' .'.''-._.-'`_./  /\ '.  \ _.-~~~````~~~-._`-.__.'                                                                                                                                                       
+  scoreboard.zIndex = 2;                     //             | |  .' _.-' |  |  \  \  '.               `~---`                                                                                                                                       
+  scoreboard.anchor.x = 1;                   //              \ \/ .'     \  \   '. '-._)                                                                                                                                         
+  scoreboard.anchor.y = 1;                   //               \/ /        \  \    `=.__`~-.                                                                                                                                         
+  setScore();                                //               / /\         `) )    / / `"".`\                                                                                                                            
+  app.stage.addChild(scoreboard);            //         , _.-'.'\ \        / /    ( (     / /                                                                                                                                                
+  //                                                    `--~`   ) )    .-'.'      '.'.  | (
+  sourcecode = new PIXI.Sprite(PIXI.Texture.from(icons[0]));// (/`    ( (`          ) )  '-;
+  sourcecode.zIndex = 2;                     //                 `      '-;         (-' 
+  sourcecode.anchor.x = 1;
+  sourcecode.anchor.y = 1;
+  sourcecode.interactive = true;
+  sourcecode.on('pointerdown', function () { window.open('https://github.com/MrOnosa/AdventOfCode2021/tree/main/Day11/Visual', '_blank'); });
+  app.stage.addChild(sourcecode);
   dumbosTextureArray.push(PIXI.Texture.from(dumbosImages[0]));
   dumbosTextureArray.push(PIXI.Texture.from(dumbosImages[1]));
   dumbosTextureArray.push(PIXI.Texture.from(dumbosImages[0]));
