@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Day12/Day12-1/Day12-1.csproj",
+                "${workspaceFolder}/Day14/Day14-1/Day14-1.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Day12/Day12-1/Day12-1.csproj",
+                "${workspaceFolder}/Day14/Day14-1/Day14-1.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/Day12/Day12-1/Day12-1.csproj",
+                "${workspaceFolder}/Day14/Day14-1/Day14-1.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
