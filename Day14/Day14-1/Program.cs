@@ -3,7 +3,7 @@
 Console.WriteLine("Hello World!");
 List<Structure> structure = new List<Structure>();
 List<(string rule, string element)> rules = new List<(string rule, string element)>();
-foreach (string line /*Store text into string records*/ in System.IO.File.ReadLines(@".\..\puzzle-input.txt"))
+foreach (string line /*Store text into string records*/ in System.IO.File.ReadLines(@".\..\test-input.txt"))
 {
     Console.WriteLine($"Input: {line}");
     if (!string.IsNullOrEmpty(line))
@@ -34,7 +34,7 @@ foreach (string line /*Store text into string records*/ in System.IO.File.ReadLi
 LetterCount(structure);
 Stopwatch stopWatch = new Stopwatch();
 stopWatch.Start();
-for (int i = 0; i < 10; i++)
+for (int i = 0; true; i++)
 {
     List<Structure> newStructure = structure.Select(s => new Structure(s.pair, s.count)).ToList();
     foreach (var rule in rules)
@@ -69,6 +69,7 @@ for (int i = 0; i < 10; i++)
         }
     }
     structure = newStructure.Select(s => new Structure(s.pair, s.count)).ToList();
+    Console.WriteLine($"Step {i+1} ");
     LetterCount(structure);
 }
 
@@ -98,7 +99,8 @@ void LetterCount(List<Structure> structure)
     {
         Console.WriteLine($"{letter.letter}: - {letter.count} ");
     }
-    Console.WriteLine($"Difference: {letters.Last().count - letters.First().count}");
+    var d = letters.Last().count - letters.First().count;
+    Console.WriteLine($"Difference: {d}");
 }
 
 class Structure
@@ -107,16 +109,16 @@ class Structure
     {
         
     }
-    public Structure(string pair, long count)
+    public Structure(string pair, ulong count)
     {
         this.pair = pair;
         this.count = count;
     }
     public string pair { get; set; }
-    public long count { get; set; }
+    public ulong count { get; set; }
 }
 class Letter
 {
     public char letter { get; set; }
-    public long count { get; set; }
+    public ulong count { get; set; }
 }
